@@ -1,4 +1,4 @@
--- 1. THÊM THỂ LOẠI (Category)
+
 INSERT INTO category (category_id, name) VALUES 
 (1, 'Action'), 
 (2, 'Comedy'), 
@@ -6,7 +6,6 @@ INSERT INTO category (category_id, name) VALUES
 (4, 'Drama'), 
 (5, 'Animation');
 
--- 2. THÊM PHIM (Film) - Đa dạng thời lượng, giá thuê, rating, năm phát hành
 INSERT INTO film (film_id, title, release_year, length, rental_rate, rating) VALUES
 (1, 'The Matrix', 1999, 136, 4.99, 'R'),
 (2, 'Inception', 2010, 148, 4.99, 'PG-13'),
@@ -19,7 +18,7 @@ INSERT INTO film (film_id, title, release_year, length, rental_rate, rating) VAL
 (9, 'Gladiator', 2000, 155, 3.99, 'R'),
 (10, 'Finding Nemo', 2003, 100, 2.99, 'G');
 
--- 3. THÊM DIỄN VIÊN (Actor)
+
 INSERT INTO actor (actor_id, first_name, last_name) VALUES
 (1, 'Keanu', 'Reeves'),
 (2, 'Leonardo', 'DiCaprio'),
@@ -28,31 +27,29 @@ INSERT INTO actor (actor_id, first_name, last_name) VALUES
 (5, 'Christian', 'Bale'),
 (6, 'Scarlett', 'Johansson');
 
--- 4. LIÊN KẾT PHIM - DIỄN VIÊN (film_actor)
 INSERT INTO film_actor (actor_id, film_id) VALUES
-(1, 1), -- Keanu đóng Matrix
-(2, 2), -- Leo đóng Inception
-(3, 3), -- Cooper đóng Hangover
-(2, 4), -- Leo đóng Interstellar
-(4, 5), -- Tom Hanks lồng tiếng Toy Story
-(5, 6), -- Christian Bale đóng Dark Knight
-(6, 4), -- Scarlett đóng Interstellar
-(6, 8); -- Scarlett đóng Avatar
+(1, 1), 
+(2, 2), 
+(3, 3), 
+(2, 4), 
+(4, 5), 
+(5, 6),
+(6, 4), 
+(6, 8); 
 
--- 5. LIÊN KẾT PHIM - THỂ LOẠI (film_category)
 INSERT INTO film_category (film_id, category_id) VALUES
-(1, 1), (1, 3), -- Matrix: Action, Sci-Fi
-(2, 1), (2, 3), -- Inception: Action, Sci-Fi
-(3, 2),         -- Hangover: Comedy
-(4, 3), (4, 4), -- Interstellar: Sci-Fi, Drama
-(5, 5),         -- Toy Story: Animation
-(6, 1), (6, 4), -- Dark Knight: Action, Drama
-(7, 2),         -- Superbad: Comedy
-(8, 1), (8, 3), -- Avatar: Action, Sci-Fi
-(9, 1), (9, 4), -- Gladiator: Action, Drama
-(10, 5);        -- Finding Nemo: Animation
+(1, 1), (1, 3), 
+(2, 1), (2, 3), 
+(3, 2),         
+(4, 3), (4, 4), 
+(5, 5),       
+(6, 1), (6, 4), 
+(7, 2),         
+(8, 1), (8, 3), 
+(9, 1), (9, 4), 
+(10, 5);        
 
--- 6. THÊM KHÁCH HÀNG (Customer) - 5 khách hàng
+
 INSERT INTO customer (customer_id, first_name, last_name, email) VALUES
 (1, 'John', 'Doe', 'john.doe@email.com'),
 (2, 'Alice', 'Smith', 'alice.smith@email.com'),
@@ -60,7 +57,7 @@ INSERT INTO customer (customer_id, first_name, last_name, email) VALUES
 (4, 'Emma', 'Watson', 'emma.watson@email.com'),
 (5, 'Michael', 'Jordan', 'michael.jordan@email.com');
 
--- 7. KHO PHIM (Inventory) - Phân bố ở cả 2 cửa hàng (store_id 1 và 2)
+
 INSERT INTO inventory (inventory_id, film_id, store_id) VALUES
 (101, 1, 1), (102, 1, 2),
 (103, 2, 1), (104, 2, 2),
@@ -73,7 +70,7 @@ INSERT INTO inventory (inventory_id, film_id, store_id) VALUES
 (113, 9, 1),
 (114, 10, 2);
 
--- 8. LƯỢT THUÊ (Rental) - Trải dài qua nhiều ngày (Có tập trung Tháng 5/2022 để test bài toán Running Total)
+
 INSERT INTO rental (rental_id, rental_date, inventory_id, customer_id, return_date) VALUES
 (1001, '2022-05-01 09:30:00', 101, 1, '2022-05-05 10:00:00'),
 (1002, '2022-05-01 14:15:00', 103, 2, '2022-05-06 12:00:00'),
@@ -85,11 +82,10 @@ INSERT INTO rental (rental_id, rental_date, inventory_id, customer_id, return_da
 (1008, '2022-05-05 15:00:00', 104, 3, '2022-05-12 10:00:00'),
 (1009, '2022-05-05 19:30:00', 110, 4, '2022-05-11 13:00:00'),
 (1010, '2022-05-06 08:45:00', 107, 5, '2022-05-13 15:00:00'),
--- Thêm một số giao dịch ngoài tháng 5/2022 (để test bộ lọc tháng)
+
 (1011, '2022-04-28 10:00:00', 101, 1, '2022-05-02 10:00:00'),
 (1012, '2022-06-02 14:00:00', 103, 2, '2022-06-08 16:00:00');
 
--- 9. THANH TOÁN (Payment) - Tương ứng với các lượt thuê
 INSERT INTO payment (payment_id, customer_id, rental_id, amount, payment_date) VALUES
 (1, 1, 1001, 10.99, '2022-05-01 09:35:00'),
 (2, 2, 1002, 15.50, '2022-05-01 14:20:00'),

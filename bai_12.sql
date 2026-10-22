@@ -9,11 +9,11 @@ WITH ranked_films AS (
         ) AS rank_in_category
     FROM category c
     JOIN film_category fc ON c.category_id = fc.category_id
-    JOIN film f ON fc.film_id = f.id                   -- ĐÃ SỬA: từ f.film_id thành f.id
-    JOIN inventory i ON f.id = i.film_id              -- Sửa luôn đoạn này nếu kho nối với film theo id
+    JOIN film f ON fc.film_id = f.id                   
+    JOIN inventory i ON f.id = i.film_id              
     JOIN rental r ON i.inventory_id = r.inventory_id
     JOIN payment p ON r.rental_id = p.rental_id
-    GROUP BY c.category_id, c.name, f.id, f.title     -- ĐÃ SỬA: dùng f.id thay vì f.film_id trong group by
+    GROUP BY c.category_id, c.name, f.id, f.title     
 )
 
 SELECT 

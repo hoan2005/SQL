@@ -1,5 +1,5 @@
 WITH daily_summary AS (
-    -- BƯỚC 1: Lọc dữ liệu tháng 5/2022 và gom nhóm tính tổng doanh thu từng ngày
+   
     SELECT 
         payment_date::date AS pay_date,
         SUM(amount) AS daily_amount
@@ -8,7 +8,7 @@ WITH daily_summary AS (
       AND payment_date < '2022-06-01'
     GROUP BY payment_date::date
 )
--- BƯỚC 2: Dùng Window Function để tính tổng cộng dồn từ bảng tạm trên
+
 SELECT 
     pay_date,
     daily_amount,
