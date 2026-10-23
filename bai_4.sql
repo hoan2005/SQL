@@ -1,5 +1,6 @@
 
 
+
 SELECT 
     COUNT(payment_id) AS total_transactions,
     SUM(amount) AS total_revenue

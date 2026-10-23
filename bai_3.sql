@@ -8,7 +8,7 @@ rating smallint,
 create_at TIMESTAMP default CURRENT_TIMESTAMP
 )
 
-alter table  film_3 alter column rating type varchar(10)
+
 
 
 INSERT INTO film_3 (title, replace_cost, rating) VALUES
